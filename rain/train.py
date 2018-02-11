@@ -40,9 +40,10 @@ def reset():
   player = [9, 4]
   raindrops = []
   if args.d == 'hard':
+    add_rain()
     for _ in range(7):
-      add_rain()
       move_rain()
+      add_rain()
   raindrop_counter = 0
   x = []
   y = []
