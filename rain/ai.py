@@ -76,7 +76,7 @@ class AI(object):
     number_of_samples = len(samples['x'])
     self.average_score -= self.average_score / 50.0
     self.average_score += number_of_samples / 50.0
-    print('Avg Score: {}'.format(self.average_score))
+    print('Game over. Learning from game... Average lifespan is {:.3f} moves.'.format(self.average_score))
     sys.stdout.flush()
     for i in range(number_of_samples):
       if i < number_of_samples - 1:

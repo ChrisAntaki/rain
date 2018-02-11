@@ -66,8 +66,17 @@ def loop():
   """The main game loop."""
   move_player()
   move_rain()
-  detect_collisions()
-  add_rain()
+  if detect_collisions():
+    if args.v:
+      render()
+      print('Score: {}'.format(len(x)))
+      stdout.flush()
+      sleep(1)
+
+    train()
+    reset()
+  else:
+    add_rain()
   render()
   record()
 
@@ -128,14 +137,8 @@ def detect_collisions():
   """Detects collisions between raindrops and the player."""
   for raindrop in raindrops:
     if raindrop[0] == player[0] and raindrop[1] == player[1]:
-      send()
-      if args.v:
-        render()
-        print('Score: {}'.format(len(x)))
-        stdout.flush()
-        sleep(1)
-      reset()
-      break
+      return True
+  return False
 
 def add_rain():
   """Spawns new raindrops."""
@@ -163,7 +166,7 @@ def render():
   grid = [' '] * 100
   for raindrop in raindrops:
     grid[raindrop[0] * 10 + raindrop[1]] = colored('O', 'blue')
-  grid[player[0] * 10 + player[1]] = colored('X', 'red')
+  grid[player[0] * 10 + player[1]] = colored('X', 'yellow')
   for i in range(10):
     row = ''
     for ii in range(10):
@@ -172,7 +175,7 @@ def render():
   print('')
   stdout.flush()
 
-def send():
+def train():
   """Trains the AI based on the last play session."""
   ai.train_with_samples({
       'x': x,
