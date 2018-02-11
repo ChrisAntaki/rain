@@ -1,3 +1,3 @@
 # Artificial Intelligence Experiments
 
-This is a collection of fun AI experiments.
+This is not an officially supported Google product. It's just a collection of fun artificial intelligence experiments.
