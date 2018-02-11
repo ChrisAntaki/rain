@@ -1,0 +1,2 @@
+tensorflow>=1.5
+termcolor>=1.1
