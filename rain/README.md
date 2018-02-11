@@ -42,4 +42,4 @@ python train.py -v
 ```
 
 ## Notes about easy mode vs. hard mode
-It's much faster to train the AI in hard mode, where the AI gets instant, accurate feedback. From the first move, a single mistake means a loss. In easy mode, it's easier for bad behavior to be accidentally reinforced. Easy mode is more fun to watch though, since it's something the average gamer could do well at.
+It's much faster to train the AI in hard mode, where the AI gets instant, accurate feedback. From the first move, a single mistake means a loss. In easy mode, it's easier for bad behavior to be accidentally reinforced.
