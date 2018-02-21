@@ -16,14 +16,9 @@
 from __future__ import print_function
 from glob import glob
 import json
-# import random
 import sys
 import subprocess
 import tensorflow as tf
-
-
-# Set a constant random seed.
-# random.seed(100)
 
 size_input = 5
 size_hidden = 200
@@ -56,12 +51,14 @@ class AI(object):
     self.sess = tf.Session()
     self.saver = tf.train.Saver()
     self.checkpoint_path = '/tmp/rain.ckpt'
-    # My attempt to add randomness/chaos
+
+    # Add a pinch of chaos.
     min_prob = tf.reduce_min(model, 1)
     boosted_y = min_prob + model
     shuffled_y = boosted_y * tf.random_uniform([3])
     self.shuffled_prediction = tf.argmax(shuffled_y, 1)
-    # Reset...
+
+    # Initialize/reset global variables.
     self.sess.run(tf.global_variables_initializer())
     if restore:
       try:
@@ -80,9 +77,10 @@ class AI(object):
     sys.stdout.flush()
     for i in range(number_of_samples):
       if i < number_of_samples - 1:
+        # Reward.
         sample_a = 1
       else:
-        # The last move was a mistake...
+        # Punish.
         sample_a = -1
       sample_x = samples['x'][i]
       sample_t = samples['y'][i]
