@@ -1,3 +1,4 @@
+"""Tests the AI class."""
 import unittest
 from ai import AI
 
