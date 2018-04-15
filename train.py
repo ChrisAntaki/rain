@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Trains an AI."""
+"""Trains an AI to play a simple game."""
 from __future__ import print_function
 from time import sleep
 from sys import stdout
