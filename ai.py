@@ -74,8 +74,6 @@ class AI(object):
     number_of_samples = len(samples['x'])
     self.average_score -= self.average_score / 50.0
     self.average_score += number_of_samples / 50.0
-    print('Game over. Learning from game... Average lifespan is {:.3f} moves.'.format(self.average_score))
-    sys.stdout.flush()
     for i in range(number_of_samples):
       if i < number_of_samples - 1:
         # Reward.
@@ -93,7 +91,9 @@ class AI(object):
               a: sample_a,
               keep_prob: 0.5,
           })
-    if self.saver:
+    if getattr(self, 'saver', None):
+      print('Game over. Learning from game... Average lifespan is {:.3f} moves.'.format(self.average_score))
+      sys.stdout.flush()
       self.saver.save(self.sess, self.checkpoint_path)
 
   def get_prediction(self, sample_x):
