@@ -31,7 +31,7 @@ keep_prob = tf.placeholder(tf.float32)
 
 class AI(object):
   '''AI for the rain game's player.'''
-  def __init__(self, restore=0):
+  def __init__(self, restore=True, save=True):
     # Define variables.
     weights_1 = tf.Variable(tf.truncated_normal([size_input, size_hidden]))
     weights_2 = tf.Variable(tf.truncated_normal([size_hidden, size_output]))
@@ -49,7 +49,8 @@ class AI(object):
     self.average_score = 0.0
     self.train = tf.train.AdamOptimizer(1e-4).minimize(self.loss)
     self.sess = tf.Session()
-    self.saver = tf.train.Saver()
+    if save:
+      self.saver = tf.train.Saver()
     self.checkpoint_path = '/tmp/rain.ckpt'
 
     # Add a pinch of chaos.
@@ -92,7 +93,8 @@ class AI(object):
               a: sample_a,
               keep_prob: 0.5,
           })
-    self.saver.save(self.sess, self.checkpoint_path)
+    if self.saver:
+      self.saver.save(self.sess, self.checkpoint_path)
 
   def get_prediction(self, sample_x):
     '''Simple prediction.'''

@@ -40,7 +40,7 @@ args = parser.parse_args()
 print(args)
 
 # Initialize variables.
-ai = AI(restore=args.r)
+ai = AI(restore=bool(args.r), save=True)
 player = []
 raindrops = []
 raindrop_counter = 0
