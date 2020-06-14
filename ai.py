@@ -18,7 +18,9 @@ from glob import glob
 import json
 import sys
 import subprocess
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+tf.disable_v2_behavior()
 
 size_input = 5
 size_hidden = 200

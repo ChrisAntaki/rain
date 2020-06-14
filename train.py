@@ -19,7 +19,6 @@ from sys import stdout
 import argparse
 import random
 from ai import AI
-from termcolor import colored
 
 # Parse arguments.
 parser = argparse.ArgumentParser()
@@ -160,20 +159,20 @@ def render():
   """Renders the game."""
   if not args.v:
     return
-  # Clear the terminal
-  print(chr(27) + "[2J")
+
+  # Print divider
+  message = '-----------\n'
 
   grid = [' '] * 100
   for raindrop in raindrops:
-    grid[raindrop[0] * 10 + raindrop[1]] = colored('O', 'blue')
-  grid[player[0] * 10 + player[1]] = colored('X', 'yellow')
+    grid[raindrop[0] * 10 + raindrop[1]] = 'O'
+  grid[player[0] * 10 + player[1]] = 'X'
   for i in range(10):
     row = ''
     for ii in range(10):
       row += grid[i * 10 + ii]
-    print(row)
-  print('')
-  stdout.flush()
+    message += row + '\n'
+  print(message)
 
 def train():
   """Trains the AI based on the last play session."""
@@ -186,6 +185,6 @@ reset()
 while True:
   loop()
   if args.v:
-    sleep(1e-1)
+    sleep(2e-1)
   else:
-    sleep(1e-7)
+    sleep(1e-9)
