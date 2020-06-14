@@ -186,5 +186,3 @@ while True:
   loop()
   if args.v:
     sleep(2e-1)
-  else:
-    sleep(1e-9)
